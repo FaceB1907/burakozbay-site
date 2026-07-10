@@ -29,21 +29,58 @@
 <main>
 
 
-  <section class="hero">
-    <div class="wrap">
-      <div class="eyebrow">İletişim · Diksiyon · Beden Dili</div>
-      <h1>Söylediğiniz kadar, <span class="accent">nasıl</span> söylediğiniz de önemli.</h1>
-      <div class="waveform" aria-hidden="true">
-        <span></span><span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span><span></span><span></span>
+  <section class="split-hero">
+    <div class="split-hero__media">
+      <img src="images/hero/hero.jpg" alt="Burak Özbay eğitim veriyor" loading="eager"
+        onerror="this.parentElement.classList.add('split-hero__media--empty'); this.remove();">
+    </div>
+    <div class="split-hero__text">
+      <div>
+        <div class="eyebrow">İletişim · Diksiyon · Beden Dili</div>
+        <h1>Söylediğiniz kadar, <span class="accent">nasıl</span> söylediğiniz de önemli.</h1>
+        <div class="waveform" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <p class="lead">Kurumlara ve bireylere iletişimin, diksiyonun ve beden dilinin gücünü öğretiyorum. 2004'ten bu yana kamu kurumları ve özel şirketlerle çalışıyorum — TV sunuculuğu ve yönetmenlik geçmişimden gelen bir bakış açısıyla.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap">
+          <a href="egitim-basvuru.html" class="btn voice">Eğitim Başvurusu Yapın</a>
+          <a href="#egitimler" class="btn outline">Eğitimleri İnceleyin</a>
+        </div>
       </div>
-      <p class="lead">Kurumların ihtiyaçlarına göre hazırlanan iletişim, diksiyon, beden dili ve sunum teknikleri eğitimleri. 2004'ten bu yana kamu kurumları ve özel şirketlerle çalışıyoruz.</p>
-      <a href="egitim-basvuru.html" class="btn voice">Eğitim Başvurusu Yapın</a>
-      <a href="egitimlerimiz.html" class="btn outline" style="margin-left:12px">Eğitimleri İnceleyin</a>
     </div>
   </section>
 
-  <section>
+  <section id="hakkimda-ozet" class="tint">
+    <div class="wrap two-col">
+      <div>
+        <div class="eyebrow">Hakkımda</div>
+        <h2 style="font-family:var(--serif); font-size:30px; margin:16px 0 18px">Kamera önünden eğitim salonuna</h2>
+        <p style="color:var(--ink-soft)">1999'dan bu yana televizyon sunuculuğu, yönetmenlik ve editörlük yaptım (TRT, Star TV, Kanal D, ATV, TV8...). 2004'ten beri bu deneyimi kurumsal eğitimlere taşıyorum — diksiyon, beden dili ve etkili iletişim üzerine.</p>
+        <a href="hakkimda.html" class="btn outline" style="margin-top:14px">Devamını okuyun →</a>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px">
+        <div style="padding:22px; background:var(--paper); border:1px solid var(--line)">
+          <div class="eyebrow" style="margin-bottom:8px">20+</div>
+          <p style="margin:0; font-size:14px; color:var(--ink-soft)">yıllık medya ve iletişim deneyimi</p>
+        </div>
+        <div style="padding:22px; background:var(--paper); border:1px solid var(--line)">
+          <div class="eyebrow" style="margin-bottom:8px">2004'ten beri</div>
+          <p style="margin:0; font-size:14px; color:var(--ink-soft)">kurumsal eğitimler veriyorum</p>
+        </div>
+        <div style="padding:22px; background:var(--paper); border:1px solid var(--line)">
+          <div class="eyebrow" style="margin-bottom:8px">8</div>
+          <p style="margin:0; font-size:14px; color:var(--ink-soft)">farklı kurumsal eğitim başlığı</p>
+        </div>
+        <div style="padding:22px; background:var(--paper); border:1px solid var(--line)">
+          <div class="eyebrow" style="margin-bottom:8px">Kamu + Özel</div>
+          <p style="margin:0; font-size:14px; color:var(--ink-soft)">sektör, geniş kurum yelpazesi</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="egitimler">
     <div class="wrap">
       <div class="section-head">
         <div class="eyebrow">Kurumsal Eğitimlerimiz</div>
@@ -94,22 +131,39 @@
     </div>
   </section>
 
-  <section class="dark">
-    <div class="wrap two-col">
-      <div>
-        <div class="eyebrow">Neden İletişim Eğitimi</div>
-        <h2 style="font-family:var(--serif); font-size:32px; margin:16px 0">İyi kurulan iletişim, kurum içi motivasyonu ve verimi doğrudan etkiler</h2>
-        <p style="color:#C9C2B4">Doğru diksiyon ve beden dili kullanımı yalnızca bireysel bir beceri değil, kurumun dışarıya yansıyan yüzüdür. Çalışanların birbiriyle ve müşteriyle kurduğu iletişim, kurumsal başarının görünmeyen ama en belirleyici parçalarından biridir.</p>
+  <section id="referanslar" class="dark">
+    <div class="wrap">
+      <div class="eyebrow">Birlikte Çalıştığımız Kurumlar</div>
+      <h2 style="font-family:var(--serif); font-size:28px; margin:16px 0 30px; color:var(--paper)">Referanslar</h2>
+      <div class="logo-row">
+        <div class="ph" style="background:#2b2820; color:#B8B0A2; border:1px solid var(--line-dark)">Yapı Kredi<br>Bankası</div>
+        <div class="ph" style="background:#2b2820; color:#B8B0A2; border:1px solid var(--line-dark)">İstanbul Emniyet<br>Müdürlüğü</div>
+        <div class="ph" style="background:#2b2820; color:#B8B0A2; border:1px solid var(--line-dark)">İstanbul Büyükşehir<br>Belediyesi</div>
+        <div class="ph" style="background:#2b2820; color:#B8B0A2; border:1px solid var(--line-dark)">Devlet Su<br>İşleri</div>
+        <div class="ph" style="background:#2b2820; color:#B8B0A2; border:1px solid var(--line-dark)">As Ecza<br>Deposu</div>
+        <div class="ph" style="background:#2b2820; color:#B8B0A2; border:1px solid var(--line-dark)">Gürsel<br>Turizm</div>
       </div>
-      <div>
-        <div class="eyebrow">Hakkımda</div>
-        <p style="color:#C9C2B4; margin-top:16px">1999'dan bu yana televizyon sunuculuğu, yönetmenlik ve editörlük yaptım; 2004'ten beri kurumsal eğitim planları hazırlayıp sunuyorum.</p>
-        <a href="hakkimda.html" class="btn outline" style="margin-top:10px; border-color:#5b5647; color:var(--paper)">Devamını okuyun →</a>
-      </div>
+      <a href="fotograflar.html" class="btn outline" style="margin-top:30px; border-color:#5b5647; color:var(--paper)">Eğitim Fotoğraflarını Görün →</a>
     </div>
   </section>
 
-  <section class="tint">
+  <section id="podcast">
+    <div class="wrap two-col">
+      <div>
+        <div class="eyebrow">Yakında</div>
+        <h2 style="font-family:var(--serif); font-size:30px; margin:16px 0 18px">Podcast yolda</h2>
+        <p style="color:var(--ink-soft)">İletişim, diksiyon, beden dili ve sunum sanatı üzerine sohbetler yapacağım bir podcast üzerinde çalışıyorum. Yayınlandığında ilk siz haberdar olun.</p>
+      </div>
+      <form class="card-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="YOUR-WEB3FORMS-KEY">
+        <input type="hidden" name="subject" value="Podcast Bildirim Listesi">
+        <div class="field"><label>E-posta</label><input type="email" name="email" required placeholder="ornek@eposta.com"></div>
+        <button class="btn voice" type="submit">Haberdar Olmak İstiyorum</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="blog" class="tint">
     <div class="wrap">
       <div class="section-head">
         <div class="eyebrow">Blog</div>
@@ -125,6 +179,15 @@
           <div><h3>Konuşma hızının nedenleri</h3><p>Hızlı ya da yavaş konuşmanın altında yatan nedenler üzerine.</p></div>
         </a>
       </div>
+    </div>
+  </section>
+
+  <section id="iletisim" class="dark" style="text-align:center; padding:90px 0">
+    <div class="wrap">
+      <div class="eyebrow" style="justify-content:center">Birlikte Çalışalım</div>
+      <h2 style="font-family:var(--serif); font-weight:600; font-size:clamp(28px,4vw,44px); color:var(--paper); margin:16px 0 28px; max-width:22ch; margin-left:auto; margin-right:auto">Kurumunuz için bir eğitim mi planlıyorsunuz?</h2>
+      <a href="egitim-basvuru.html" class="btn voice">Eğitim Başvurusu Yapın</a>
+      <a href="iletisim.html" class="btn outline" style="border-color:#5b5647; color:var(--paper)">İletişime Geçin</a>
     </div>
   </section>
 
