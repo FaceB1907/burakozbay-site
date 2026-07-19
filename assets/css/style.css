@@ -24,7 +24,7 @@
 }
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth; scroll-padding-top:90px}
 body{
   margin:0;
   font-family:var(--sans);
@@ -166,6 +166,32 @@ nav.main-nav a.active::after{
 .btn.outline:hover{background:var(--ink); color:var(--paper)}
 .btn.voice{background:var(--voice); border-color:var(--voice)}
 .btn.voice:hover{background:transparent; color:var(--voice)}
+
+/* ---------- Split hero (photo + text) ---------- */
+.split-hero{
+  display:grid; grid-template-columns:1fr 1fr;
+  min-height:calc(100vh - 78px);
+  border-bottom:1px solid var(--line);
+}
+.split-hero__media{
+  position:relative; background:var(--paper-dim); overflow:hidden; min-height:360px;
+}
+.split-hero__media img{width:100%; height:100%; object-fit:cover; object-position:center 20%}
+.split-hero__media::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(to right, transparent 85%, var(--paper) 100%);
+}
+.split-hero__media--empty{background:linear-gradient(160deg, var(--ink) 0%, var(--voice-deep) 140%)}
+.split-hero__text{
+  display:flex; align-items:center; padding:64px 56px;
+}
+.split-hero__text h1{max-width:none}
+@media (max-width:900px){
+  .split-hero{grid-template-columns:1fr}
+  .split-hero__media{min-height:320px; order:1}
+  .split-hero__media::after{background:linear-gradient(to bottom, transparent 80%, var(--paper) 100%)}
+  .split-hero__text{order:2; padding:40px 24px}
+}
 
 /* ---------- Section shells ---------- */
 section{padding:64px 0}
