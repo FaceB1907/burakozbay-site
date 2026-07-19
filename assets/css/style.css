@@ -285,7 +285,8 @@ ul.syllabus{padding:0; margin:26px 0; border-top:1px solid var(--line)}
 .partner-card:hover{background:var(--paper-dim)}
 .partner-card img{
   width:64px; height:64px; object-fit:contain; flex:0 0 auto;
-  background:var(--ink); padding:8px; border-radius:8px;
+  background:var(--paper); padding:10px; border-radius:16px;
+  box-shadow:0 10px 24px -8px rgba(30,27,22,.28), 0 2px 6px -2px rgba(30,27,22,.12);
 }
 .partner-card .pc-text{flex:1}
 .partner-card .pc-eyebrow{
@@ -344,6 +345,12 @@ footer.site-footer h5{
 footer.site-footer a{color:var(--paper-dim); text-decoration:none; font-size:14px; display:block; margin-bottom:10px}
 footer.site-footer a:hover{color:var(--gold)}
 footer.site-footer p{color:#B8B0A2; font-size:14px; max-width:44ch}
+.linkedin-link{
+  display:inline-flex; align-items:center; gap:8px; margin-top:16px;
+  color:var(--paper-dim); text-decoration:none; font-size:14px; font-weight:600;
+  border:1px solid var(--line-dark); padding:8px 14px; border-radius:20px;
+}
+.linkedin-link:hover{color:var(--gold); border-color:var(--gold)}
 .footer-bottom{
   border-top:1px solid var(--line-dark); padding-top:24px;
   display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;

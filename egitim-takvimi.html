@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Eğitim Takvimi — Burak Özbay</title>
-<meta name="description" content="Kurumların ihtiyaçlarına göre hazırlanan iletişim, diksiyon, beden dili ve sunum teknikleri eğitimleri.">
+<title>Eğitim ve Sohbet Takvimi — Burak Özbay</title>
+<meta name="description" content="Eğitim veya seminer başvurusu yapın, size en kısa sürede dönüş yapalım.">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="icon" href="data:,">
 </head>
@@ -14,42 +14,80 @@
     <a href="index.html" class="logo">Burak <em>Özbay</em></a>
     <button class="nav-toggle" aria-label="Menü" onclick="document.querySelector('.main-nav').classList.toggle('open')"><span></span></button>
     <nav class="main-nav">
-      <a href="index.html" class="">Ana Sayfa</a>
-<a href="egitimlerimiz.html" class="">Eğitimlerimiz</a>
-<a href="hakkimda.html" class="">Hakkımda</a>
-<a href="referanslar.html" class="">Referanslar</a>
-<a href="blog.html" class="">Blog</a>
-<a href="egitim-takvimi.html" class="active">Eğitim Takvimi</a>
-<a href="iletisim.html" class="">İletişim</a>
+      <a href="index.html">Ana Sayfa</a>
+      <a href="egitimlerimiz.html">Eğitimlerimiz</a>
+      <a href="hakkimda.html">Hakkımda</a>
+      <a href="referanslar.html">Referanslar</a>
+      <a href="blog.html">Blog</a>
+      <a href="egitim-takvimi.html" class="active">Eğitim Takvimi</a>
+      <a href="iletisim.html">İletişim</a>
       <a href="egitim-basvuru.html" class="nav-cta">Eğitim Başvuru</a>
     </nav>
   </div>
 </header>
 
 <main>
-<div class="page-hero">
+  <div class="page-hero">
     <div class="wrap">
-      <div class="breadcrumb"><a href="index.html">Ana Sayfa</a> / Eğitim Takvimi</div>
-      <div class="eyebrow">Yaklaşan Eğitimler</div>
-      <h1>Eğitim Takvimi</h1>
-      
+      <div class="breadcrumb"><a href="index.html">Ana Sayfa</a> / Eğitim ve Sohbet Takvimi</div>
+      <div class="eyebrow">Başvuru</div>
+      <h1>Eğitim ve Sohbet Takvimi</h1>
     </div>
   </div>
 
   <section>
-    <div class="wrap">
-      <div style="padding:14px 18px; background:var(--paper-dim); border-left:3px solid var(--voice); margin-bottom:30px; font-size:14px">
-        Bu sayfadaki eski (2019) tarihli eğitimler örnek olarak bırakıldı — yeni tarihlerle güncellenmesi gerekiyor.
-      </div>
-      <div class="timeline">
-        <div class="row"><span class="d">16 Şub 2019</span><div><h4>Diksiyon Semineri</h4><span class="meta">1 gün · maks. 20 katılımcı</span></div><span class="tag">Örnek</span></div>
-        <div class="row"><span class="d">23 Şub 2019</span><div><h4>Beden Dili Eğitimi</h4><span class="meta">1 gün · maks. 20 katılımcı</span></div><span class="tag">Örnek</span></div>
-        <div class="row"><span class="d">24 Şub 2019</span><div><h4>Sunum Teknikleri Eğitimi</h4><span class="meta">2 gün · maks. 15 katılımcı</span></div><span class="tag">Örnek</span></div>
-      </div>
-      <a href="egitim-basvuru.html" class="btn voice" style="margin-top:34px">Eğitim Başvurusu Yapın</a>
+    <div class="wrap" style="max-width:640px">
+      <p style="color:var(--ink-soft); margin-bottom:30px">Kurumunuz için bir eğitim ya da sohbet/seminer planlamak istiyorsanız, aşağıdaki formu doldurun — size en kısa sürede dönüş yapacağız.</p>
+      <form class="card-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="YOUR-WEB3FORMS-KEY">
+        <input type="hidden" name="subject" value="Eğitim ve Sohbet Takvimi Başvurusu">
+
+        <div class="field">
+          <label>Talep Edilen Başlık</label>
+          <select name="talep_edilen_baslik" required>
+            <option value="">Seçiniz</option>
+            <option>Etkili İletişim Teknikleri</option>
+            <option>Etkili Sunum Teknikleri</option>
+            <option>Diksiyon</option>
+            <option>Beden Dili Eğitimi</option>
+            <option>Etkili Konuşma Teknikleri</option>
+            <option>Vatandaş ve İç Müşteri Empati Egzersizleri</option>
+            <option>Reyon Görevlisi Eğitimi - Merchandiser</option>
+            <option>Ekipte Lider Olabilme</option>
+            <option>Seminer</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Kurum Adı <span style="font-weight:400; color:var(--ink-soft)">(opsiyonel)</span></label>
+          <input type="text" name="kurum_adi">
+        </div>
+
+        <div class="field">
+          <label>E-posta</label>
+          <input type="email" name="email" required>
+        </div>
+
+        <div class="field">
+          <label>Adı Soyadı</label>
+          <input type="text" name="ad_soyad" required>
+        </div>
+
+        <div class="field">
+          <label>Görevi</label>
+          <input type="text" name="gorevi">
+        </div>
+
+        <div class="field">
+          <label>Açıklama</label>
+          <textarea name="aciklama" placeholder="Planladığınız tarih, katılımcı sayısı veya eklemek istediğiniz diğer bilgiler"></textarea>
+        </div>
+
+        <button class="btn voice" type="submit">Başvuruyu Gönder</button>
+        <p class="form-note">Formu gönderdikten sonra size en kısa sürede dönüş yapacağız.</p>
+      </form>
     </div>
   </section>
-
 </main>
 
 <footer class="site-footer">
@@ -58,6 +96,7 @@
       <div>
         <a href="index.html" class="logo">Burak <em>Özbay</em></a>
         <p style="margin-top:16px">Kurumların ihtiyaçlarına göre hazırlanan iletişim, diksiyon, beden dili ve sunum teknikleri eğitimleri.</p>
+        <a href="https://www.linkedin.com/in/burak-özbay-0091374a/" target="_blank" rel="noopener" class="linkedin-link">in LinkedIn'de takip edin</a>
       </div>
       <div>
         <h5>Eğitimler</h5>
