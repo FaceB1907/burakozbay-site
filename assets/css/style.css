@@ -62,12 +62,16 @@ a{color:inherit}
 .logo{
   font-family:var(--serif);
   font-weight:600;
-  font-size:21px;
+  font-size:26px;
   letter-spacing:-.01em;
   text-decoration:none;
-  color:var(--ink);
+  color:#16264A;
 }
-.logo em{color:var(--voice); font-style:normal}
+.logo em{color:#16264A; font-style:normal}
+.nav-linkedin{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:30px; height:30px; border-radius:6px; background:#0A66C2; flex:0 0 auto;
+}
 
 .nav-toggle{display:none}
 nav.main-nav{display:flex; align-items:center; gap:28px}
@@ -241,8 +245,8 @@ ul.syllabus{padding:0; margin:26px 0; border-top:1px solid var(--line)}
   font-family:var(--serif); font-weight:600;
   font-size:clamp(30px,4.6vw,50px); line-height:1.08; margin:0; letter-spacing:-.01em;
 }
-.page-hero .cover{margin-top:34px; aspect-ratio:16/7; overflow:hidden; background:var(--paper-dim)}
-.page-hero .cover img{width:100%; height:100%; object-fit:cover}
+.page-hero .cover{margin-top:34px; aspect-ratio:16/10; overflow:hidden; background:var(--paper-dim)}
+.page-hero .cover img{width:100%; height:100%; object-fit:cover; object-position:center 12%}
 
 .content-block{max-width:72ch}
 .content-block h2{font-family:var(--serif); font-size:24px; margin-top:0}
@@ -347,6 +351,7 @@ footer.site-footer{background:var(--ink); color:var(--paper-dim); padding:56px 0
 footer.site-footer .cols{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; margin-bottom:40px}
 @media (max-width:700px){footer.site-footer .cols{grid-template-columns:1fr}}
 footer.site-footer .logo{color:var(--paper)}
+footer.site-footer .logo em{color:var(--paper)}
 footer.site-footer h5{
   font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase;
   color:var(--gold); margin:0 0 16px;
