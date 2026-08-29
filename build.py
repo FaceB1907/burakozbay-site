@@ -8,6 +8,18 @@ Her sayfa NAV/FOOTER şablonunu paylaşır; içerik PAGES listesinde tanımlıd�
 import os
 
 OUT = os.path.dirname(os.path.abspath(__file__))
+SITE_ORIGIN = "https://burakozbay.com"
+
+
+def url(filename):
+    """Convert a generated .html filename into its clean, extension-less
+    canonical path. Cloudflare Pages already serves /foo for foo.html and
+    308-redirects foo.html -> /foo, so every internal link and the sitemap
+    should point straight at the clean path — linking to the .html form
+    just adds a redirect hop and keeps the old URL alive for Google."""
+    if filename == "index.html":
+        return "/"
+    return "/" + filename[:-5]
 
 NAV_ITEMS = [
     ("index.html", "Ana Sayfa"),
@@ -36,7 +48,7 @@ SITE_DESC = "Kurumların ihtiyaçlarına göre hazırlanan iletişim, diksiyon, 
 
 def page_shell(title, active_file, body_html, meta_desc=SITE_DESC, cover=None, eyebrow=None, breadcrumb=None):
     nav_links = "\n".join(
-        f'<a href="{href}" class="{"active" if href==active_file else ""}">{label}</a>'
+        f'<a href="{url(href)}" class="{"active" if href==active_file else ""}">{label}</a>'
         for href, label in NAV_ITEMS
     )
     cover_html = ""
@@ -53,17 +65,18 @@ def page_shell(title, active_file, body_html, meta_desc=SITE_DESC, cover=None, e
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} — Burak Özbay</title>
 <meta name="description" content="{meta_desc}">
+<link rel="canonical" href="{SITE_ORIGIN}{url(active_file)}">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="icon" href="data:,">
 </head>
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a href="index.html" class="logo">Burak <em>Özbay</em></a>
+    <a href="/" class="logo">Burak <em>Özbay</em></a>
     <button class="nav-toggle" aria-label="Menü" onclick="document.querySelector('.main-nav').classList.toggle('open')"><span></span></button>
     <nav class="main-nav">
       {nav_links}
-      <a href="egitim-basvuru.html" class="nav-cta">Eğitim Başvuru</a>
+      <a href="/egitim-basvuru" class="nav-cta">Eğitim Başvuru</a>
     </nav>
   </div>
 </header>
@@ -77,22 +90,22 @@ def page_shell(title, active_file, body_html, meta_desc=SITE_DESC, cover=None, e
   <div class="wrap">
     <div class="cols">
       <div>
-        <a href="index.html" class="logo">Burak <em>Özbay</em></a>
+        <a href="/" class="logo">Burak <em>Özbay</em></a>
         <p style="margin-top:16px">{SITE_DESC}</p>
       </div>
       <div>
         <h5>Eğitimler</h5>
-        <a href="egitimlerimiz.html">Kurumsal Eğitimlerimiz</a>
-        <a href="diksiyon.html">Diksiyon</a>
-        <a href="beden-dili-egitimi.html">Beden Dili Eğitimi</a>
-        <a href="etkili-sunum-teknikleri.html">Etkili Sunum Teknikleri</a>
+        <a href="/egitimlerimiz">Kurumsal Eğitimlerimiz</a>
+        <a href="/diksiyon">Diksiyon</a>
+        <a href="/beden-dili-egitimi">Beden Dili Eğitimi</a>
+        <a href="/etkili-sunum-teknikleri">Etkili Sunum Teknikleri</a>
       </div>
       <div>
         <h5>Kurumsal</h5>
-        <a href="hakkimda.html">Hakkımda</a>
-        <a href="referanslar.html">Referanslar</a>
-        <a href="blog.html">Blog</a>
-        <a href="iletisim.html">İletişim</a>
+        <a href="/hakkimda">Hakkımda</a>
+        <a href="/referanslar">Referanslar</a>
+        <a href="/blog">Blog</a>
+        <a href="/iletisim">İletişim</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -153,7 +166,7 @@ pages = {}
 
 # ---------- index.html ----------
 training_grid = "\n".join(
-    f'''<a href="{href}" class="training-card">
+    f'''<a href="{url(href)}" class="training-card">
       <span class="idx">{i:02d}</span>
       <h3>{label}</h3>
       <span class="go">İncele →</span>
@@ -180,7 +193,7 @@ pages["index.html"] = page_shell(
         </div>
         <p class="lead">Kurumlara ve bireylere iletişimin, diksiyonun ve beden dilinin gücünü öğretiyorum. 2004'ten bu yana kamu kurumları ve özel şirketlerle çalışıyorum — TV sunuculuğu ve yönetmenlik geçmişimden gelen bir bakış açısıyla.</p>
         <div style="display:flex; gap:12px; flex-wrap:wrap">
-          <a href="egitim-basvuru.html" class="btn voice">Eğitim Başvurusu Yapın</a>
+          <a href="/egitim-basvuru" class="btn voice">Eğitim Başvurusu Yapın</a>
           <a href="#egitimler" class="btn outline">Eğitimleri İnceleyin</a>
         </div>
       </div>
@@ -192,8 +205,8 @@ pages["index.html"] = page_shell(
       <div>
         <div class="eyebrow">Hakkımda</div>
         <h2 style="font-family:var(--serif); font-size:30px; margin:16px 0 18px">Kamera önünden eğitim salonuna</h2>
-        <p style="color:var(--ink-soft)">1999'dan bu yana televizyon sunuculuğu, yönetmenlik ve editörlük yaptım (TRT, Star TV, Kanal D, ATV, TV8...). 2004'ten beri bu deneyimi kurumsal eğitimlere taşıyorum — diksiyon, beden dili ve etkili iletişim üzerine.</p>
-        <a href="hakkimda.html" class="btn outline" style="margin-top:14px">Devamını okuyun →</a>
+        <p style="color:var(--ink-soft)">1999'dan bu yana televizyon sunuculuğu, yönetmenlik ve editörlük yaptım (TRT, Star TV, Kanal D, Show TV, ATV, TV8...). 2004'ten beri bu deneyimi kurumsal eğitimlere taşıyorum — diksiyon, beden dili ve etkili iletişim üzerine. 2026'dan itibaren de yapay zeka alanında <strong>KODO Next AI</strong>'ın kurucu ortağıyım.</p>
+        <a href="/hakkimda" class="btn outline" style="margin-top:14px">Devamını okuyun →</a>
       </div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px">
         <div style="padding:22px; background:var(--paper); border:1px solid var(--line)">
@@ -216,6 +229,30 @@ pages["index.html"] = page_shell(
     </div>
   </section>
 
+  <section id="projelerim" class="tint">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Diğer Projelerim</div>
+        <h2>Yapay zeka alanındaki çalışmalarım</h2>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; margin-top:30px">
+        <a href="https://kodonext.com" target="_blank" rel="noopener" style="display:flex; flex-direction:column; align-items:center; gap:14px; padding:30px; background:var(--paper); border:1px solid var(--line); text-decoration:none; color:inherit">
+          <img src="images/partners/kodo-logo.png" alt="KODO Next AI" style="height:56px; width:auto; object-fit:contain">
+          <span style="font-weight:600">kodonext.com</span>
+        </a>
+        <a href="https://iris.kodonext.com" target="_blank" rel="noopener" style="display:flex; flex-direction:column; align-items:center; gap:14px; padding:30px; background:var(--paper); border:1px solid var(--line); text-decoration:none; color:inherit">
+          <img src="images/partners/iris-logo.png" alt="Iris — KODO Next AI" style="height:56px; width:auto; object-fit:contain">
+          <span style="font-weight:600">iris.kodonext.com</span>
+        </a>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:14px; padding:30px; background:var(--paper); border:1px solid var(--line)">
+          <img src="images/partners/kodobella-logo.png" alt="KODOBella" style="height:56px; width:auto; object-fit:contain"
+            onerror="this.style.display='none'">
+          <span style="font-weight:600">KODOBella</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="egitimler">
     <div class="wrap">
       <div class="section-head">
@@ -233,14 +270,14 @@ pages["index.html"] = page_shell(
       <div class="eyebrow">Birlikte Çalıştığımız Kurumlar</div>
       <h2 style="font-family:var(--serif); font-size:28px; margin:16px 0 30px; color:var(--paper)">Referanslar</h2>
       <div class="logo-row">
-        <div class="ph" style="background:#2b2820; color:#B8B0A2; border:1px solid var(--line-dark)">Yapı Kredi<br>Bankası</div>
-        <div class="ph" style="background:#2b2820; color:#B8B0A2; border:1px solid var(--line-dark)">İstanbul Emniyet<br>Müdürlüğü</div>
-        <div class="ph" style="background:#2b2820; color:#B8B0A2; border:1px solid var(--line-dark)">İstanbul Büyükşehir<br>Belediyesi</div>
-        <div class="ph" style="background:#2b2820; color:#B8B0A2; border:1px solid var(--line-dark)">Devlet Su<br>İşleri</div>
-        <div class="ph" style="background:#2b2820; color:#B8B0A2; border:1px solid var(--line-dark)">As Ecza<br>Deposu</div>
-        <div class="ph" style="background:#2b2820; color:#B8B0A2; border:1px solid var(--line-dark)">Gürsel<br>Turizm</div>
+        <div class="ph" style="background:#fff; display:flex; align-items:center; justify-content:center; padding:18px"><img src="images/logos/yapikredi.jpg" alt="Yapı Kredi Bankası" style="max-width:100%; max-height:56px; object-fit:contain"></div>
+        <div class="ph" style="background:#fff; display:flex; align-items:center; justify-content:center; padding:18px"><img src="images/logos/emniyet.png" alt="İstanbul Emniyet Müdürlüğü" style="max-width:100%; max-height:56px; object-fit:contain"></div>
+        <div class="ph" style="background:#fff; display:flex; align-items:center; justify-content:center; padding:18px"><img src="images/logos/ibb.png" alt="İstanbul Büyükşehir Belediyesi" style="max-width:100%; max-height:56px; object-fit:contain"></div>
+        <div class="ph" style="background:#fff; display:flex; align-items:center; justify-content:center; padding:18px"><img src="images/logos/dsi.png" alt="Devlet Su İşleri" style="max-width:100%; max-height:56px; object-fit:contain"></div>
+        <div class="ph" style="background:#fff; display:flex; align-items:center; justify-content:center; padding:18px"><img src="images/logos/asecza.png" alt="As Ecza Deposu" style="max-width:100%; max-height:56px; object-fit:contain"></div>
+        <div class="ph" style="background:#fff; display:flex; align-items:center; justify-content:center; padding:18px"><img src="images/logos/gursel.png" alt="Gürsel Turizm" style="max-width:100%; max-height:56px; object-fit:contain"></div>
       </div>
-      <a href="fotograflar.html" class="btn outline" style="margin-top:30px; border-color:#5b5647; color:var(--paper)">Eğitim Fotoğraflarını Görün →</a>
+      <a href="/fotograflar" class="btn outline" style="margin-top:30px; border-color:#5b5647; color:var(--paper)">Eğitim Fotoğraflarını Görün →</a>
     </div>
   </section>
 
@@ -267,11 +304,11 @@ pages["index.html"] = page_shell(
         <h2>Son yazılar</h2>
       </div>
       <div class="post-list">
-        <a class="post-row" href="blog.html">
+        <a class="post-row" href="/blog">
           <span class="date">24.01.2018</span>
           <div><h3>İletişim eğitimi neden gerekli?</h3><p>Kurum içi motivasyon, verim ve iş tatmini üzerinde iletişimin etkisi.</p></div>
         </a>
-        <a class="post-row" href="blog.html">
+        <a class="post-row" href="/blog">
           <span class="date">16.01.2018</span>
           <div><h3>Konuşma hızının nedenleri</h3><p>Hızlı ya da yavaş konuşmanın altında yatan nedenler üzerine.</p></div>
         </a>
@@ -283,20 +320,20 @@ pages["index.html"] = page_shell(
     <div class="wrap">
       <div class="eyebrow" style="justify-content:center">Birlikte Çalışalım</div>
       <h2 style="font-family:var(--serif); font-weight:600; font-size:clamp(28px,4vw,44px); color:var(--paper); margin:16px 0 28px; max-width:22ch; margin-left:auto; margin-right:auto">Kurumunuz için bir eğitim mi planlıyorsunuz?</h2>
-      <a href="egitim-basvuru.html" class="btn voice">Eğitim Başvurusu Yapın</a>
-      <a href="iletisim.html" class="btn outline" style="border-color:#5b5647; color:var(--paper)">İletişime Geçin</a>
+      <a href="/egitim-basvuru" class="btn voice">Eğitim Başvurusu Yapın</a>
+      <a href="/iletisim" class="btn outline" style="border-color:#5b5647; color:var(--paper)">İletişime Geçin</a>
     </div>
   </section>
 ''')
 
 # ---------- eğitimlerimiz ----------
 egitimlerimiz_list = "\n".join(
-    f'<li><span class="num">{i:02d}</span><a href="{href}" style="text-decoration:none;color:inherit;font-weight:600">{label}</a></li>'
+    f'<li><span class="num">{i:02d}</span><a href="{url(href)}" style="text-decoration:none;color:inherit;font-weight:600">{label}</a></li>'
     for i, (href, label, _c) in enumerate(TRAININGS, 1)
 )
 pages["egitimlerimiz.html"] = page_shell(
     "Eğitimlerimiz", "egitimlerimiz.html",
-    breadcrumb='<a href="index.html">Ana Sayfa</a> / Eğitimlerimiz',
+    breadcrumb='<a href="/">Ana Sayfa</a> / Eğitimlerimiz',
     eyebrow="Kurumsal &amp; Bireysel",
     body_html=f'''
   <section>
@@ -381,7 +418,7 @@ for href, label, cover in TRAININGS:
     data = TRAINING_CONTENT[href]
     pages[href] = page_shell(
         label, href,
-        breadcrumb=f'<a href="index.html">Ana Sayfa</a> / <a href="egitimlerimiz.html">Eğitimlerimiz</a> / {label}',
+        breadcrumb=f'<a href="/">Ana Sayfa</a> / <a href="/egitimlerimiz">Eğitimlerimiz</a> / {label}',
         eyebrow="Kurumsal Eğitim",
         cover=cover,
         meta_desc=SITE_DESC,
@@ -391,7 +428,7 @@ for href, label, cover in TRAININGS:
 # ---------- hakkımda ----------
 pages["hakkimda.html"] = page_shell(
     "Hakkımda", "hakkimda.html",
-    breadcrumb='<a href="index.html">Ana Sayfa</a> / Hakkımda',
+    breadcrumb='<a href="/">Ana Sayfa</a> / Hakkımda',
     eyebrow="Burak Özbay",
     cover="hakkimda.jpg",
     body_html='''
@@ -403,8 +440,9 @@ pages["hakkimda.html"] = page_shell(
         <li><span class="num">99</span><span><strong>1999–2006:</strong> Bayrak Radyo Televizyon Kurumu — sunucu, yönetmen, programcı. TRT Eğitim Dairesi'nin Kıbrıs'taki diksiyon ve sunum eğitimlerine katıldım. Türk Hava Kurumu için 2 yıllık bir TV programı hazırladım. "Eğitime Farklı Bakış" programını yönettim.</span></li>
         <li><span class="num">06</span><span><strong>2006–2009:</strong> İstanbul'da Rumeli Televizyonu'nu kurdum, genel müdürlüğünü yaptım. "Seçime Doğru" ve "Meclise Doğru" programlarını hazırladım.</span></li>
         <li><span class="num">09</span><span><strong>2009–2011:</strong> Saha Pazarlama ve Organizasyon Şirketi'nde proje uzmanı olarak çalıştım.</span></li>
-        <li><span class="num">+</span><span>TRT, Star TV, Kanal D, NOW, ATV ve TV8 gibi kanallarda yönetmenlik ve editörlük yaptım (Ben Bilmem Eşim Bilir, Çarkıfelek, Karavan, Big Brother, Utopia, Doya Doya Moda, Zahide Yetiş ile Yeniden Başlasak).</span></li>
+        <li><span class="num">+</span><span>TRT, Star TV, Kanal D, NOW, Show TV, ATV ve TV8 gibi kanallarda yönetmenlik ve editörlük yaptım (Ben Bilmem Eşim Bilir, Çarkıfelek, Karavan, Big Brother, Utopia, Doya Doya Moda, Zahide Yetiş ile Yeniden Başlasak).</span></li>
         <li><span class="num">04</span><span><strong>2004'ten beri</strong> kurumsal eğitim planları hazırlayıp sunuyorum.</span></li>
+        <li><span class="num">26</span><span><strong>2026:</strong> Yapay zeka alanında <strong>KODO Next AI</strong>'ın kurucu ortağıyım — görsel/video üretim platformu <a href="https://iris.kodonext.com" target="_blank" rel="noopener">Iris</a> ve güzellik/stil uygulaması KODOBella bu çatı altında geliştiriliyor.</span></li>
       </ul>
       <div class="two-col" style="margin-top:20px">
         <div>
@@ -423,21 +461,20 @@ pages["hakkimda.html"] = page_shell(
 # ---------- referanslar ----------
 pages["referanslar.html"] = page_shell(
     "Referanslar", "referanslar.html",
-    breadcrumb='<a href="index.html">Ana Sayfa</a> / Referanslar',
+    breadcrumb='<a href="/">Ana Sayfa</a> / Referanslar',
     eyebrow="Birlikte Çalıştığımız Kurumlar",
     body_html='''
   <section>
     <div class="wrap">
       <div class="logo-row">
-        <div class="ph">Yapı Kredi<br>Bankası</div>
-        <div class="ph">İstanbul Emniyet<br>Müdürlüğü</div>
-        <div class="ph">İstanbul Büyükşehir<br>Belediyesi</div>
-        <div class="ph">Devlet Su<br>İşleri</div>
-        <div class="ph">As Ecza<br>Deposu</div>
-        <div class="ph">Gürsel<br>Turizm</div>
+        <div class="ph" style="background:#fff; display:flex; align-items:center; justify-content:center; padding:18px"><img src="images/logos/yapikredi.jpg" alt="Yapı Kredi Bankası" style="max-width:100%; max-height:56px; object-fit:contain"></div>
+        <div class="ph" style="background:#fff; display:flex; align-items:center; justify-content:center; padding:18px"><img src="images/logos/emniyet.png" alt="İstanbul Emniyet Müdürlüğü" style="max-width:100%; max-height:56px; object-fit:contain"></div>
+        <div class="ph" style="background:#fff; display:flex; align-items:center; justify-content:center; padding:18px"><img src="images/logos/ibb.png" alt="İstanbul Büyükşehir Belediyesi" style="max-width:100%; max-height:56px; object-fit:contain"></div>
+        <div class="ph" style="background:#fff; display:flex; align-items:center; justify-content:center; padding:18px"><img src="images/logos/dsi.png" alt="Devlet Su İşleri" style="max-width:100%; max-height:56px; object-fit:contain"></div>
+        <div class="ph" style="background:#fff; display:flex; align-items:center; justify-content:center; padding:18px"><img src="images/logos/asecza.png" alt="As Ecza Deposu" style="max-width:100%; max-height:56px; object-fit:contain"></div>
+        <div class="ph" style="background:#fff; display:flex; align-items:center; justify-content:center; padding:18px"><img src="images/logos/gursel.png" alt="Gürsel Turizm" style="max-width:100%; max-height:56px; object-fit:contain"></div>
       </div>
-      <p style="margin-top:34px; color:var(--ink-soft)">Logo görsellerini eklemek için <code>images/logos/</code> klasörüne dosyaları koyup <code>referanslar.html</code> içindeki <code>.ph</code> kutularını <code>&lt;img&gt;</code> ile değiştirin.</p>
-      <a href="fotograflar.html" class="btn outline" style="margin-top:10px">Eğitim Fotoğraflarını Görün →</a>
+      <a href="/fotograflar" class="btn outline" style="margin-top:10px">Eğitim Fotoğraflarını Görün →</a>
     </div>
   </section>
 ''')
@@ -462,7 +499,7 @@ for title, count, slug in GALLERY_GROUPS:
 
 pages["fotograflar.html"] = page_shell(
     "Fotoğraflar", "referanslar.html",
-    breadcrumb='<a href="index.html">Ana Sayfa</a> / <a href="referanslar.html">Referanslar</a> / Fotoğraflar',
+    breadcrumb='<a href="/">Ana Sayfa</a> / <a href="/referanslar">Referanslar</a> / Fotoğraflar',
     eyebrow="Eğitimlerden Kareler",
     body_html=f'<section><div class="wrap">{gallery_html}</div></section>'
 )
@@ -478,14 +515,14 @@ BLOG_POSTS = [
 ]
 
 blog_rows = "\n".join(
-    f'''<a class="post-row" href="{slug}">
+    f'''<a class="post-row" href="{url(slug)}">
       <span class="date">{date}</span>
       <div><h3>{title}</h3><p>{excerpt}</p></div>
     </a>''' for slug, title, date, excerpt in BLOG_POSTS
 )
 pages["blog.html"] = page_shell(
     "Blog", "blog.html",
-    breadcrumb='<a href="index.html">Ana Sayfa</a> / Blog',
+    breadcrumb='<a href="/">Ana Sayfa</a> / Blog',
     eyebrow="Yazılar",
     body_html=f'<section><div class="wrap"><div class="post-list">{blog_rows}</div></div></section>'
 )
@@ -493,21 +530,21 @@ pages["blog.html"] = page_shell(
 for slug, title, date, excerpt in BLOG_POSTS:
     pages[slug] = page_shell(
         title, "blog.html",
-        breadcrumb=f'<a href="index.html">Ana Sayfa</a> / <a href="blog.html">Blog</a> / {title}',
+        breadcrumb=f'<a href="/">Ana Sayfa</a> / <a href="/blog">Blog</a> / {title}',
         eyebrow=f"Yazı · {date}",
         body_html=f'''<section><div class="wrap content-block">
           <p>{excerpt}</p>
           <p style="margin-top:20px; padding:16px; background:var(--paper-dim); border-left:3px solid var(--voice); font-size:14px">
           Bu yazının tam metni eski Weebly sitesinden aktarılacak — CSV içindeki <code>blog_post.csv</code> dosyasında
           orijinal içerik mevcut, isterseniz bir sonraki adımda birebir işleyelim.</p>
-          <a href="blog.html" class="btn outline" style="margin-top:10px">← Tüm Yazılar</a>
+          <a href="/blog" class="btn outline" style="margin-top:10px">← Tüm Yazılar</a>
         </div></section>'''
     )
 
 # ---------- iletişim ----------
 pages["iletisim.html"] = page_shell(
     "İletişim", "iletisim.html",
-    breadcrumb='<a href="index.html">Ana Sayfa</a> / İletişim',
+    breadcrumb='<a href="/">Ana Sayfa</a> / İletişim',
     eyebrow="Bize Ulaşın",
     body_html='''
   <section>
@@ -537,7 +574,7 @@ pages["iletisim.html"] = page_shell(
 # ---------- eğitim takvimi ----------
 pages["egitim-takvimi.html"] = page_shell(
     "Eğitim Takvimi", "egitim-takvimi.html",
-    breadcrumb='<a href="index.html">Ana Sayfa</a> / Eğitim Takvimi',
+    breadcrumb='<a href="/">Ana Sayfa</a> / Eğitim Takvimi',
     eyebrow="Yaklaşan Eğitimler",
     body_html='''
   <section>
@@ -550,7 +587,7 @@ pages["egitim-takvimi.html"] = page_shell(
         <div class="row"><span class="d">23 Şub 2019</span><div><h4>Beden Dili Eğitimi</h4><span class="meta">1 gün · maks. 20 katılımcı</span></div><span class="tag">Örnek</span></div>
         <div class="row"><span class="d">24 Şub 2019</span><div><h4>Sunum Teknikleri Eğitimi</h4><span class="meta">2 gün · maks. 15 katılımcı</span></div><span class="tag">Örnek</span></div>
       </div>
-      <a href="egitim-basvuru.html" class="btn voice" style="margin-top:34px">Eğitim Başvurusu Yapın</a>
+      <a href="/egitim-basvuru" class="btn voice" style="margin-top:34px">Eğitim Başvurusu Yapın</a>
     </div>
   </section>
 ''')
@@ -558,7 +595,7 @@ pages["egitim-takvimi.html"] = page_shell(
 # ---------- eğitim başvuru ----------
 pages["egitim-basvuru.html"] = page_shell(
     "Eğitim Başvuru", "egitim-takvimi.html",
-    breadcrumb='<a href="index.html">Ana Sayfa</a> / <a href="egitim-takvimi.html">Eğitim Takvimi</a> / Eğitim Başvuru',
+    breadcrumb='<a href="/">Ana Sayfa</a> / <a href="/egitim-takvimi">Eğitim Takvimi</a> / Eğitim Başvuru',
     eyebrow="Bireysel Eğitim Başvuru Formu",
     body_html='''
   <section>
