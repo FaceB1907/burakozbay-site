@@ -196,6 +196,24 @@ pages["index.html"] = page_shell(
           <a href="/egitim-basvuru" class="btn voice">Eğitim Başvurusu Yapın</a>
           <a href="#egitimler" class="btn outline">Eğitimleri İnceleyin</a>
         </div>
+        <div style="margin-top:24px; padding:22px; background:#fff; border:1px solid var(--line)">
+          <div class="eyebrow" style="margin-bottom:16px">Diğer Projelerim</div>
+          <div style="display:flex; gap:22px; flex-wrap:wrap">
+            <a href="https://kodonext.com" target="_blank" rel="noopener" style="display:flex; flex-direction:column; align-items:center; gap:8px; text-decoration:none; color:inherit; width:84px">
+              <img src="images/partners/kodo-logo.png" alt="KODO Next AI" style="height:44px; width:44px; object-fit:contain">
+              <span style="font-size:12px; font-weight:600; text-align:center; line-height:1.3">kodonext.com</span>
+            </a>
+            <a href="https://iris.kodonext.com" target="_blank" rel="noopener" style="display:flex; flex-direction:column; align-items:center; gap:8px; text-decoration:none; color:inherit; width:84px">
+              <img src="images/partners/iris-logo.png" alt="Iris — KODO Next AI" style="height:44px; width:44px; object-fit:contain">
+              <span style="font-size:12px; font-weight:600; text-align:center; line-height:1.3">iris.kodonext.com</span>
+            </a>
+            <a href="https://bella.kodonext.com" target="_blank" rel="noopener" style="display:flex; flex-direction:column; align-items:center; gap:8px; text-decoration:none; color:inherit; width:84px">
+              <img src="images/partners/kodobella-logo.png" alt="KODOBella" style="height:44px; width:44px; object-fit:contain"
+                onerror="this.style.display='none'">
+              <span style="font-size:12px; font-weight:600; text-align:center; line-height:1.3">KODOBella</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -224,30 +242,6 @@ pages["index.html"] = page_shell(
         <div style="padding:22px; background:var(--paper); border:1px solid var(--line)">
           <div class="eyebrow" style="margin-bottom:8px">Kamu + Özel</div>
           <p style="margin:0; font-size:14px; color:var(--ink-soft)">sektör, geniş kurum yelpazesi</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="projelerim" class="tint">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">Diğer Projelerim</div>
-        <h2>Yapay zeka alanındaki çalışmalarım</h2>
-      </div>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; margin-top:30px">
-        <a href="https://kodonext.com" target="_blank" rel="noopener" style="display:flex; flex-direction:column; align-items:center; gap:14px; padding:30px; background:var(--paper); border:1px solid var(--line); text-decoration:none; color:inherit">
-          <img src="images/partners/kodo-logo.png" alt="KODO Next AI" style="height:56px; width:auto; object-fit:contain">
-          <span style="font-weight:600">kodonext.com</span>
-        </a>
-        <a href="https://iris.kodonext.com" target="_blank" rel="noopener" style="display:flex; flex-direction:column; align-items:center; gap:14px; padding:30px; background:var(--paper); border:1px solid var(--line); text-decoration:none; color:inherit">
-          <img src="images/partners/iris-logo.png" alt="Iris — KODO Next AI" style="height:56px; width:auto; object-fit:contain">
-          <span style="font-weight:600">iris.kodonext.com</span>
-        </a>
-        <div style="display:flex; flex-direction:column; align-items:center; gap:14px; padding:30px; background:var(--paper); border:1px solid var(--line)">
-          <img src="images/partners/kodobella-logo.png" alt="KODOBella" style="height:56px; width:auto; object-fit:contain"
-            onerror="this.style.display='none'">
-          <span style="font-weight:600">KODOBella</span>
         </div>
       </div>
     </div>
@@ -442,7 +436,7 @@ pages["hakkimda.html"] = page_shell(
         <li><span class="num">09</span><span><strong>2009–2011:</strong> Saha Pazarlama ve Organizasyon Şirketi'nde proje uzmanı olarak çalıştım.</span></li>
         <li><span class="num">+</span><span>TRT, Star TV, Kanal D, NOW, Show TV, ATV ve TV8 gibi kanallarda yönetmenlik ve editörlük yaptım (Ben Bilmem Eşim Bilir, Çarkıfelek, Karavan, Big Brother, Utopia, Doya Doya Moda, Zahide Yetiş ile Yeniden Başlasak).</span></li>
         <li><span class="num">04</span><span><strong>2004'ten beri</strong> kurumsal eğitim planları hazırlayıp sunuyorum.</span></li>
-        <li><span class="num">26</span><span><strong>2026:</strong> Yapay zeka alanında <strong>KODO Next AI</strong>'ın kurucu ortağıyım — görsel/video üretim platformu <a href="https://iris.kodonext.com" target="_blank" rel="noopener">Iris</a> ve güzellik/stil uygulaması KODOBella bu çatı altında geliştiriliyor.</span></li>
+        <li><span class="num">26</span><span><strong>2026:</strong> Yapay zeka alanında <strong>KODO Next AI</strong>'ın kurucu ortağıyım — görsel/video üretim platformu <a href="https://iris.kodonext.com" target="_blank" rel="noopener">Iris</a> ve güzellik/stil uygulaması <a href="https://bella.kodonext.com" target="_blank" rel="noopener">KODOBella</a> bu çatı altında geliştiriliyor.</span></li>
       </ul>
       <div class="two-col" style="margin-top:20px">
         <div>
